@@ -1,3 +1,33 @@
+var express = require("express");
+var path = require("path");
+
+//Getting Started
+
+// $("#getStarted").on("click", function(){
+//   console.log("click");
+//   app.get("/", function(req, res){
+//     res.sendFile(path.join(__dirname, "notes.html"));
+//   })
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
@@ -141,3 +171,5 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
+
+

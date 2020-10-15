@@ -11,9 +11,11 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.get("/api/notes", function(req, res) {
-    console.log("IT WORKED")
-    fs.readFile(__dirname + "/db/db.json", function(data){
+    
+    fs.readFile(path.join(__dirname, "../db/db.json"), 'utf8', function(err, data){
+        console.log(data);
         return res.json(data);
+        
     })
   });
 

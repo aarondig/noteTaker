@@ -74,7 +74,6 @@ var handleNoteDelete = function(event) {
   if (activeNote.id === note.id) {
     activeNote = {};
   }
-
   deleteNote(note.id).then(function() {
     getAndRenderNotes();
     renderActiveNote();
@@ -128,8 +127,8 @@ var renderNoteList = function(notes) {
 // Gets notes from the db and renders them to the sidebar
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
-    console.log(JSON.parse(data));
-    renderNoteList(JSON.parse(data));
+    console.log(data);
+    renderNoteList(data);
   });
 };
 

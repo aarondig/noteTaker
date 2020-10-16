@@ -1,14 +1,13 @@
 var path = require("path");
 var fs = require("fs");
+var database = require("../db/db.json");
 
-require("../db/db.json");
+const { v4: uuidv4 } = require('uuid');
+
+uuidv4();
+
 
 module.exports = function(app) {
-  // API GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases when a user visits a link
-  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-  // ---------------------------------------------------------------------------
 
   app.get("/api/notes", function(req, res) {
     fs.readFile(path.join(__dirname, "../db/db.json"), 'utf8', function(err, data){
@@ -16,12 +15,16 @@ module.exports = function(app) {
         return res.json(data);
     });
   });
+
   app.post("/api/notes", function(req, res) {
-
-        data.push(req.body);
-        res.json(true);
-      
+    var newNote = req.body;
+    for (i = 0; i < database.length; i++){
+      newNote.id = i;
+    }
+    database.push(newNote);
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(database), function(err){
+      if (err) throw err;
+    });
+    return res.json(true);
   });
-  
-
 }
